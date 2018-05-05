@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fanfandou.platform.serv.game.dao.GameRoleDisposeMapper">
+    <resultMap id="BaseResultMap" type="com.fanfandou.platform.api.game.entity.GameRoleDispose">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="game_id" property="gameId" jdbcType="INTEGER"/>
+        <result column="site_id" property="siteId" jdbcType="INTEGER"/>
+        <result column="area_id" property="areaId" jdbcType="INTEGER"/>
+        <result column="closure_reason" property="closureReason" jdbcType="VARCHAR"/>
+        <result column="closure_time" property="closureTime" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="role_status" property="roleStatus" jdbcType="INTEGER"/>
+        <result column="disableSendMsg_reason" property="disablesendmsgReason" jdbcType="VARCHAR"/>
+        <result column="disableSendMsg_time" property="disablesendmsgTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, role_id, role_name, user_id, game_id, site_id, area_id, closure_reason, closure_time, 
+    create_time, role_status, disableSendMsg_reason, disableSendMsg_time
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.fanfandou.platform.api.game.entity.GameRoleDisposeExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from game_role_dispose
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from game_role_dispose
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from game_role_dispose
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.fanfandou.platform.api.game.entity.GameRoleDispose">
+    insert into game_role_dispose (id, role_id, role_name, 
+      user_id, game_id, site_id, 
+      area_id, closure_reason, closure_time, 
+      create_time, role_status, disableSendMsg_reason, 
+      disableSendMsg_time)
+    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=BIGINT}, #{gameId,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, 
+      #{areaId,jdbcType=INTEGER}, #{closureReason,jdbcType=VARCHAR}, #{closureTime,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{roleStatus,jdbcType=INTEGER}, #{disablesendmsgReason,jdbcType=VARCHAR}, 
+      #{disablesendmsgTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.fanfandou.platform.api.game.entity.GameRoleDispose">
+        insert into game_role_dispose
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="gameId != null">
+                game_id,
+            </if>
+            <if test="siteId != null">
+                site_id,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="closureReason != null">
+                closure_reason,
+            </if>
+            <if test="closureTime != null">
+                closure_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="roleStatus != null">
+                role_status,
+            </if>
+            <if test="disablesendmsgReason != null">
+                disableSendMsg_reason,
+            </if>
+            <if test="disablesendmsgTime != null">
+                disableSendMsg_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="roleId != null">
+                #{roleId,jdbcType=BIGINT},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="gameId != null">
+                #{gameId,jdbcType=INTEGER},
+            </if>
+            <if test="siteId != null">
+                #{siteId,jdbcType=INTEGER},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="closureReason != null">
+                #{closureReason,jdbcType=VARCHAR},
+            </if>
+            <if test="closureTime != null">
+                #{closureTime,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="roleStatus != null">
+                #{roleStatus,jdbcType=INTEGER},
+            </if>
+            <if test="disablesendmsgReason != null">
+                #{disablesendmsgReason,jdbcType=VARCHAR},
+            </if>
+            <if test="disablesendmsgTime != null">
+                #{disablesendmsgTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.fanfandou.platform.api.game.entity.GameRoleDisposeExample"
+            resultType="java.lang.Integer">
+        select count(*) from game_role_dispose
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update game_role_dispose
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.roleId != null">
+                role_id = #{record.roleId,jdbcType=BIGINT},
+            </if>
+            <if test="record.roleName != null">
+                role_name = #{record.roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userId != null">
+                user_id = #{record.userId,jdbcType=BIGINT},
+            </if>
+            <if test="record.gameId != null">
+                game_id = #{record.gameId,jdbcType=INTEGER},
+            </if>
+            <if test="record.siteId != null">
+                site_id = #{record.siteId,jdbcType=INTEGER},
+            </if>
+            <if test="record.areaId != null">
+                area_id = #{record.areaId,jdbcType=INTEGER},
+            </if>
+            <if test="record.closureReason != null">
+                closure_reason = #{record.closureReason,jdbcType=VARCHAR},
+            </if>
+            <if test="record.closureTime != null">
+                closure_time = #{record.closureTime,jdbcType=INTEGER},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.roleStatus != null">
+                role_status = #{record.roleStatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.disablesendmsgReason != null">
+                disableSendMsg_reason = #{record.disablesendmsgReason,jdbcType=VARCHAR},
+            </if>
+            <if test="record.disablesendmsgTime != null">
+                disableSendMsg_time = #{record.disablesendmsgTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update game_role_dispose
+        set id = #{record.id,jdbcType=BIGINT},
+        role_id = #{record.roleId,jdbcType=BIGINT},
+        role_name = #{record.roleName,jdbcType=VARCHAR},
+        user_id = #{record.userId,jdbcType=BIGINT},
+        game_id = #{record.gameId,jdbcType=INTEGER},
+        site_id = #{record.siteId,jdbcType=INTEGER},
+        area_id = #{record.areaId,jdbcType=INTEGER},
+        closure_reason = #{record.closureReason,jdbcType=VARCHAR},
+        closure_time = #{record.closureTime,jdbcType=INTEGER},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        role_status = #{record.roleStatus,jdbcType=INTEGER},
+        disableSendMsg_reason = #{record.disablesendmsgReason,jdbcType=VARCHAR},
+        disableSendMsg_time = #{record.disablesendmsgTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.fanfandou.platform.api.game.entity.GameRoleDispose">
+        update game_role_dispose
+        <set>
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=BIGINT},
+            </if>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="gameId != null">
+                game_id = #{gameId,jdbcType=INTEGER},
+            </if>
+            <if test="siteId != null">
+                site_id = #{siteId,jdbcType=INTEGER},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="closureReason != null">
+                closure_reason = #{closureReason,jdbcType=VARCHAR},
+            </if>
+            <if test="closureTime != null">
+                closure_time = #{closureTime,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="roleStatus != null">
+                role_status = #{roleStatus,jdbcType=INTEGER},
+            </if>
+            <if test="disablesendmsgReason != null">
+                disableSendMsg_reason = #{disablesendmsgReason,jdbcType=VARCHAR},
+            </if>
+            <if test="disablesendmsgTime != null">
+                disableSendMsg_time = #{disablesendmsgTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.fanfandou.platform.api.game.entity.GameRoleDispose">
+    update game_role_dispose
+    set role_id = #{roleId,jdbcType=BIGINT},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      game_id = #{gameId,jdbcType=INTEGER},
+      site_id = #{siteId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      closure_reason = #{closureReason,jdbcType=VARCHAR},
+      closure_time = #{closureTime,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      role_status = #{roleStatus,jdbcType=INTEGER},
+      disableSendMsg_reason = #{disablesendmsgReason,jdbcType=VARCHAR},
+      disableSendMsg_time = #{disablesendmsgTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="closurePageList" resultMap="BaseResultMap" parameterType="java.util.Map">
+
+        SELECT * from game_role_dispose
+        WHERE
+        1 = 1
+        <if test="gameId != null">
+            and game_id = #{gameId,jdbcType=INTEGER}
+        </if>
+        <if test="roleId != null">
+            and role_id = #{roleId,jdbcType=BIGINT}
+        </if>
+        <if test="siteId != null">
+            and site_id = #{siteId,jdbcType=INTEGER}
+        </if>
+        <if test="roleStatus != null">
+            and role_status = #{roleStatus,jdbcType=INTEGER}
+        </if>
+        and role_status != 3
+        ORDER BY ${str1} ${str2}
+        limit #{num1,jdbcType=INTEGER},#{num2,jdbcType=INTEGER}
+    </select>
+
+    <select id="closureCount" resultType="int" parameterType="java.util.Map">
+        SELECT COUNT(*) from game_role_dispose
+        WHERE
+        1 = 1
+        <if test="gameId != null">
+            and game_id = #{gameId,jdbcType=INTEGER}
+        </if>
+        <if test="roleId != null">
+            and role_id = #{roleId,jdbcType=BIGINT}
+        </if>
+        <if test="siteId != null">
+            and site_id = #{siteId,jdbcType=INTEGER}
+        </if>
+        <if test="roleStatus != null">
+            and role_status = #{roleStatus,jdbcType=INTEGER}
+        </if>
+        and role_status != 3
+    </select>
+</mapper>

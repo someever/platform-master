@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="admin-web" owner="admin"/>
+
+    <dubbo:reference interface="com.fanfandou.platform.api.game.service.GameAreaService" id="gameAreaService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.game.service.GameToyService" id="gameToyService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.billing.service.BillingService" id="billingService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.billing.service.GoodsService" id="goodsService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.billing.service.WalletSerivce" id="walletSerivce"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.billing.service.OrderService" id="orderService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.admin.api.operation.service.NoticeService" id="noticeService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.admin.api.system.service.ResService" id="resourceService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.game.service.GameRoleService" id="gameRoleService"
+                     check="false" timeout="1200000"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.game.service.OperationDispatchService"
+                     id="operationDispatchService" timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.admin.api.system.service.DataDictionaryService" id="dataDictionaryService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.user.service.AccountService" id="accountService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.activity.service.GameActivityService"
+                     id="gameActivityService" timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.admin.api.operation.service.PatchService" id="patchService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.activity.service.PromoteAwardPackageService"
+                     id="promoteAwardPackageService" timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.activity.service.PromoteCodeBatchService"
+                     id="promoteCodeBatchService" timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.activity.service.PromoteCodeService" id="promoteCodeService"
+                     timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.activity.service.GameActivityConService"
+                     id="gameActivityConService" timeout="1200000" check="false"/>
+    <dubbo:reference interface="com.fanfandou.platform.api.game.service.GameClosureService"
+                     id="gameClosureService" timeout="1200000" check="false"/>
+
+
+</beans>

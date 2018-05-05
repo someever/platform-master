@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %d(%r) --> [%t] %l: %m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="logfile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/${service.log.name}.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p] %d(%r) --> [%t] %l: %m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="activation" class="com.fanfandou.common.log4j.MyDailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/lyt/Activation"/>
+        <param name="DatePattern" value="'_'yyyyMMdd'_001.txt'"/>
+        <param name="Encoding" value="UTF-8" />
+        <filter class="com.fanfandou.common.log4j.LogFilter">
+            <param name="LevelMin" value="40010"/>
+            <param name="LevelMax" value="40010"/>
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="update" class="com.fanfandou.common.log4j.MyDailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/lyt/Update"/>
+        <param name="DatePattern" value="'_'yyyyMMdd'_001.txt'"/>
+        <param name="Encoding" value="UTF-8" />
+        <filter class="com.fanfandou.common.log4j.LogFilter">
+            <param name="LevelMin" value="40020"/>
+            <param name="LevelMax" value="40020"/>
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="loginUI" class="com.fanfandou.common.log4j.MyDailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/lyt/LoginUi"/>
+        <param name="DatePattern" value="'_'yyyyMMdd'_001.txt'"/>
+        <param name="Encoding" value="UTF-8" />
+        <filter class="com.fanfandou.common.log4j.LogFilter">
+            <param name="LevelMin" value="40030"/>
+            <param name="LevelMax" value="40030"/>
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="identification" class="com.fanfandou.common.log4j.MyDailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/lyt/Identification"/>
+        <param name="DatePattern" value="'_'yyyyMMdd'_001.txt'"/>
+        <param name="Encoding" value="UTF-8" />
+        <filter class="com.fanfandou.common.log4j.LogFilter">
+            <param name="LevelMin" value="40040"/>
+            <param name="LevelMax" value="40040"/>
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="enterGame" class="com.fanfandou.common.log4j.MyDailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/lyt/Load"/>
+        <param name="DatePattern" value="'_'yyyyMMdd'_001.txt'"/>
+        <param name="Encoding" value="UTF-8" />
+        <filter class="com.fanfandou.common.log4j.LogFilter">
+            <param name="LevelMin" value="40050"/>
+            <param name="LevelMax" value="40050"/>
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="gmPayment" class="com.fanfandou.common.log4j.MyDailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/order/GmPayment"/>
+        <param name="DatePattern" value="'_'yyyyMMdd'_001.txt'"/>
+        <param name="Encoding" value="UTF-8" />
+        <filter class="com.fanfandou.common.log4j.LogFilter">
+            <param name="LevelMin" value="40060"/>
+            <param name="LevelMax" value="40060"/>
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="CGActoin" class="com.fanfandou.common.log4j.MyDailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/lyt/CGActoin"/>
+        <param name="DatePattern" value="'_'yyyyMMdd'_001.txt'"/>
+        <param name="Encoding" value="UTF-8" />
+        <filter class="com.fanfandou.common.log4j.LogFilter">
+            <param name="LevelMin" value="40080"/>
+            <param name="LevelMax" value="40080"/>
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="Prepaid" class="com.fanfandou.common.log4j.MyDailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/lyt/Prepaid"/>
+        <param name="DatePattern" value="'_'yyyyMMdd'_001.txt'"/>
+        <param name="Encoding" value="UTF-8" />
+        <filter class="com.fanfandou.common.log4j.LogFilter">
+            <param name="LevelMin" value="40090"/>
+            <param name="LevelMax" value="40090"/>
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %x %n"/>
+        </layout>
+    </appender>
+    <appender name="gmPayment" class="com.fanfandou.common.log4j.MyDailyRollingFileAppender">
+        <param name="File" value="${user.home}/ffd_platform/logs/order/GmPayment"/>
+        <param name="DatePattern" value="'_'yyyyMMdd'_001.txt'"/>
+        <param name="Encoding" value="UTF-8" />
+        <filter class="com.fanfandou.common.log4j.LogFilter">
+            <param name="LevelMin" value="40120"/>
+            <param name="LevelMax" value="40120"/>
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m %x %n"/>
+        </layout>
+    </appender>
+    <!-- 对指定的包设定日志级别，主要目的是减少不必要的日志 -->
+    <logger name="com.ibatis" additivity="false">
+        <level value="INFO" />
+    </logger>
+
+    <logger name="com.alibaba.dubbo" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="logfile"/>
+    </logger>
+    <logger name="com.springframework" additivity="false">
+        <level value="INFO"/>
+    </logger>
+
+    <root>
+        <!-- TRACE < DEBUG < INFO < WARN < ERROR < FATAL -->
+        <priority value="INFO"/>
+        <!-- 在生产环境下，可以把下行输出到控制台的代码注释掉 -->
+        <appender-ref ref="console"/>
+        <!-- 打印文件 -->
+        <appender-ref ref="logfile"/>
+
+        <appender-ref ref="activation"/>
+
+        <appender-ref ref="update"/>
+
+        <appender-ref ref="loginUI"/>
+
+        <appender-ref ref="identification"/>
+
+        <appender-ref ref="enterGame"/>
+
+        <appender-ref ref="CGActoin"/>
+
+        <appender-ref ref="Prepaid"/>
+
+        <appender-ref ref="gmPayment"/>
+
+    </root>
+
+</log4j:configuration>

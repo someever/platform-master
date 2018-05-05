@@ -1,0 +1,5 @@
+game
+user
+admin
+activity
+billing

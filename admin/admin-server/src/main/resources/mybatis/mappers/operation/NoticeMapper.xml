@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fanfandou.admin.server.operation.dao.NoticeMapper">
+
+    <resultMap type="com.fanfandou.admin.api.operation.entity.Notice" id="noticeMapper">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="gameIds" column="game_ids" jdbcType="VARCHAR"/>
+        <result property="siteIds" column="site_ids" jdbcType="VARCHAR"/>
+        <result property="areaIds" column="area_ids" jdbcType="VARCHAR"/>
+        <result property="noticeTitle" column="notice_title" jdbcType="VARCHAR"/>
+        <result property="noticeContent" column="notice_content" jdbcType="VARCHAR"/>
+        <result property="noticeType" column="notice_type" jdbcType="TINYINT"
+                typeHandler="com.fanfandou.common.handler.EnumStatusHandler"/>
+        <result property="noticeState" column="notice_state" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="beginTime" column="begin_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="publishCount" column="publish_count" jdbcType="INTEGER"/>
+        <result property="publishSpace" column="publish_space" jdbcType="INTEGER"/>
+        <result property="publisher" column="publisher" jdbcType="VARCHAR"/>
+        <result property="noticeJson" column="notice_json" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="noticeMapper">
+		<![CDATA[
+
+
+
+
+
+                select * from game_notice
+
+
+
+
+
+        ]]>
+	</select>
+
+    <delete id="delete" parameterType="int">
+		<![CDATA[
+
+
+
+
+
+		    delete from game_notice where id = #{id,jdbcType=INTEGER}
+
+
+
+
+
+        ]]>
+	</delete>
+
+    <select id="selectById" resultMap="noticeMapper" parameterType="int">
+		   select * from game_notice where id = #{id,jdbcType=INTEGER}
+	</select>
+
+    <select id="selByArea" resultMap="noticeMapper" parameterType="java.util.Map">
+        select * from game_notice
+        where game_ids = #{gameIds,jdbcType=VARCHAR}
+        <if test="areaIds != null">
+            and area_ids LIKE #{areaIds,jdbcType=VARCHAR}
+        </if>
+        <if test="siteIds != null">
+            and site_ids LIKE #{siteIds,jdbcType=VARCHAR}
+        </if>
+        and notice_type = #{noticeType,jdbcType=TINYINT}
+        and notice_state = 1
+        order by create_time desc
+        limit 0,1
+    </select>
+
+    <select id="pageList" resultMap="noticeMapper" parameterType="java.util.Map">
+        select * from game_notice
+        where notice_title LIKE #{noticeTitle,jdbcType=VARCHAR}
+
+        <if test="gameIds != null ">
+            and game_ids = #{gameIds,jdbcType=VARCHAR}
+        </if>
+        <if test="siteIds != null">
+            and site_ids LIKE #{siteIds,jdbcType=VARCHAR}
+        </if>
+        and create_time BETWEEN #{from,jdbcType=TIMESTAMP} and #{to,jdbcType=TIMESTAMP}
+        order by id desc
+        limit #{num1,jdbcType=INTEGER},#{num2,jdbcType=INTEGER}
+
+    </select>
+
+    <select id="totalCount" resultType="int" parameterType="java.util.Map">
+        select count(*) from game_notice
+        WHERE notice_title LIKE #{noticeTitle,jdbcType=VARCHAR}
+        <if test="gameIds != null">
+            and game_ids = #{gameIds,jdbcType=VARCHAR}
+        </if>
+        <if test="siteIds != null">
+            and site_ids LIKE #{siteIds,jdbcType=VARCHAR}
+        </if>
+        and create_time BETWEEN #{from,jdbcType=TIMESTAMP} and #{to,jdbcType=TIMESTAMP}
+
+    </select>
+
+    <insert id="insert" parameterType="com.fanfandou.admin.api.operation.entity.Notice" useGeneratedKeys="true"
+            keyProperty="id">
+	    <![CDATA[
+
+
+
+
+
+	     INSERT INTO game_notice (game_ids,site_ids,area_ids,notice_title,notice_content,notice_type,
+	     notice_state,create_time,begin_time,end_time,publish_count,publish_space,publisher,notice_json)
+	     VALUES (
+		#{gameIds,jdbcType=VARCHAR},
+		#{siteIds,jdbcType=VARCHAR},
+		#{areaIds,jdbcType=VARCHAR},
+		#{noticeTitle,jdbcType=VARCHAR},
+		#{noticeContent,jdbcType=VARCHAR},
+        #{noticeType,jdbcType=TINYINT,typeHandler=com.fanfandou.common.handler.EnumStatusHandler},
+		#{noticeState,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{beginTime,jdbcType=TIMESTAMP},
+		#{endTime,jdbcType=TIMESTAMP},
+		#{publishCount,jdbcType=INTEGER},
+		#{publishSpace,jdbcType=INTEGER},
+		#{publisher,jdbcType=VARCHAR},
+		#{noticeJson,jdbcType=VARCHAR}
+	)
+
+
+
+
+
+        ]]>
+	</insert>
+
+    <update id="update" parameterType="com.fanfandou.admin.api.operation.entity.Notice">
+
+         <![CDATA[
+
+
+
+
+        UPDATE game_notice SET
+            game_ids = #{gameIds,jdbcType=VARCHAR},
+            site_ids = #{siteIds,jdbcType=VARCHAR},
+            area_ids = #{areaIds,jdbcType=VARCHAR},
+            notice_title = #{noticeTitle,jdbcType=VARCHAR},
+            notice_content = #{noticeContent,jdbcType=VARCHAR},
+            notice_type = #{noticeType,jdbcType=TINYINT,typeHandler=com.fanfandou.common.handler.EnumStatusHandler},
+            notice_state = #{noticeState,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            begin_time = #{beginTime,jdbcType=TIMESTAMP},
+            end_time = #{endTime,jdbcType=TIMESTAMP},
+            publish_count = #{publishCount,jdbcType=INTEGER},
+            publish_space = #{publishSpace,jdbcType=INTEGER},
+            publisher = #{publisher,jdbcType=VARCHAR},
+            notice_json=#{noticeJson,jdbcType=VARCHAR}
+        WHERE
+            id = #{id,jdbcType=INTEGER}
+
+
+
+
+        ]]>
+	</update>
+
+    <select id="noticeCount" resultType="int" parameterType="java.util.Map">
+        select count(*) from game_notice
+        WHERE 1=1
+        <if test="gameIds != null">
+            and game_ids = #{gameIds,jdbcType=VARCHAR}
+        </if>
+        <if test="noticeId != null">
+            and id != #{noticeId,jdbcType=INTEGER}
+        </if>
+        <if test="areaIds != null">and area_ids LIKE #{areaIds}</if>
+        <if test="noticeType != null">and notice_type = #{noticeType}</if>
+        <if test="siteIds != null">and site_ids LIKE #{siteIds}</if>
+    </select>
+
+    <select id="getRowData" resultMap="noticeMapper" parameterType="java.util.Map">
+       select  * from game_notice ORDER BY create_time DESC  limit 1
+    </select>
+
+</mapper>
